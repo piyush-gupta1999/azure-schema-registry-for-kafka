@@ -17,9 +17,9 @@ public class KafkaAvroSpecificRecord {
         Properties props = new Properties();
 
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, brokerUrl);
-        props.put("security.protocol", "SASL_SSL");
-        props.put("sasl.mechanism", "PLAIN");
-        props.put("sasl.jaas.config", jaasConfig);
+//        props.put("security.protocol", "SASL_SSL");
+//        props.put("sasl.mechanism", "PLAIN");
+//        props.put("sasl.jaas.config", jaasConfig);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "schema-registry-sample");
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");

@@ -7,6 +7,7 @@ import com.azure.identity.ManagedIdentityCredentialBuilder;
 import java.io.FileInputStream;
 import java.util.Properties;
 import java.util.Scanner;
+import com.azure.identity.DefaultAzureCredentialBuilder;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -21,26 +22,27 @@ public class App {
         // Schema Registry specific properties
         String registryUrl = props.getProperty("schema.registry.url");
 
-        TokenCredential credential;
-        if (props.getProperty("use.managed.identity.credential").equals("true")) {
-            if (props.getProperty("managed.identity.clientId") != null) {
-                credential = new ManagedIdentityCredentialBuilder()
-                        .clientId(props.getProperty("managed.identity.clientId"))
-                        .build();
-            } else if (props.getProperty("managed.identity.resourceId") != null) {
-                credential = new ManagedIdentityCredentialBuilder()
-                        .resourceId(props.getProperty("managed.identity.resourceId"))
-                        .build();
-            } else {
-                credential = new ManagedIdentityCredentialBuilder().build();
-            }
-        } else {
-            credential = new ClientSecretCredentialBuilder()
-                    .tenantId(props.getProperty("tenant.id"))
-                    .clientId(props.getProperty("client.id"))
-                    .clientSecret(props.getProperty("client.secret"))
-                    .build();
-        }
+//        TokenCredential credential;
+//        if (props.getProperty("use.managed.identity.credential").equals("true")) {
+//            if (props.getProperty("managed.identity.clientId") != null) {
+//                credential = new ManagedIdentityCredentialBuilder()
+//                        .clientId(props.getProperty("managed.identity.clientId"))
+//                        .build();
+//            } else if (props.getProperty("managed.identity.resourceId") != null) {
+//                credential = new ManagedIdentityCredentialBuilder()
+//                        .resourceId(props.getProperty("managed.identity.resourceId"))
+//                        .build();
+//            } else {
+//                credential = new ManagedIdentityCredentialBuilder().build();
+//            }
+//        } else {
+//            credential = new ClientSecretCredentialBuilder()
+//                    .tenantId(props.getProperty("tenant.id"))
+//                    .clientId(props.getProperty("client.id"))
+//                    .clientSecret(props.getProperty("client.secret"))
+//                    .build();
+//        }
+        TokenCredential credential = new DefaultAzureCredentialBuilder().build();
 
         Scanner in = new Scanner(System.in);
 
